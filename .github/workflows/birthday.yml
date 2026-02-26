@@ -18,5 +18,6 @@ jobs:
           curl -sS -X POST \
             "$SUPABASE_URL/functions/v1/send-birthday-messages" \
             -H "Authorization: Bearer $SERVICE_ROLE" \
-            -H "Content-Type: application/json" \
-            --data '{}'
+              -H "apikey: $SERVICE_ROLE" \
+                -H "Content-Type: application/json" \
+                  --data '{}'
