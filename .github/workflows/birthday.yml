@@ -1,0 +1,21 @@
+name: birthday-messages
+
+on:
+  schedule:
+    - cron: "0 12 * * *"   # ~8:00 AM Puerto Rico (ajustable)
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call birthday edge function
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SERVICE_ROLE: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          curl -sS -X POST \
+            "$SUPABASE_URL/functions/v1/send-birthday-messages" \
+            -H "Authorization: Bearer $SERVICE_ROLE" \
+            -H "Content-Type: application/json" \
+            --data '{}'
