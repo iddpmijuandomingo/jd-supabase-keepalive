@@ -2,7 +2,7 @@ name: birthday-messages
 
 on:
   schedule:
-    - cron: "0 12 * * *"   # ~8:00 AM Puerto Rico (ajustable)
+    - cron: "0 12 * * *"  # ~8:00 AM Puerto Rico (ajustable)
   workflow_dispatch:
 
 jobs:
@@ -14,6 +14,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SERVICE_ROLE: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: |
+          echo "Calling birthday edge function..."
           curl -sS -X POST \
             "$SUPABASE_URL/functions/v1/send-birthday-messages" \
             -H "Authorization: Bearer $SERVICE_ROLE" \
