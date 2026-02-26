@@ -19,4 +19,3 @@ jobs:
             -H "Authorization: Bearer $SERVICE_ROLE" \
             -H "Content-Type: application/json" \
             --data '{}'
-echo "SUPABASE_URL=[$SUPABASE_URL]"
